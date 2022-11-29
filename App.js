@@ -1,20 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View style={styles.mainPage}>
+      <View style={styles.inputSearch}>
+        <TextInput placeholder='Search Pokemon' style={styles.searchBar}/>
+        <Button title='Search' color={"red"}/>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  mainPage:{
+    paddingTop: 30
   },
+  inputSearch:{
+    flexDirection: "row",
+    width: "100%",
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: 'center',
+    
+  },
+  searchBar:{
+    backgroundColor: "white",
+    height: "90%",
+    borderRadius: 8,
+    textAlign: 'center',
+    flex: 2,
+  }
 });
