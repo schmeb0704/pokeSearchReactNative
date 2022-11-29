@@ -5,8 +5,16 @@ export default function App() {
   return (
     <View style={styles.mainPage}>
       <View style={styles.inputSearch}>
-        <TextInput placeholder='Search Pokemon' style={styles.searchBar}/>
-        <Button title='Search' color={"red"}/>
+        <View style={styles.searchBar}>
+          <TextInput placeholder='Search Pokemon'
+            style={{
+              padding: 5
+            }}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button title='Search' color={"red"}/>
+        </View>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -16,6 +24,7 @@ export default function App() {
 const styles = StyleSheet.create({
   mainPage:{
     paddingTop: 30
+    
   },
   inputSearch:{
     flexDirection: "row",
@@ -23,6 +32,9 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     justifyContent: "center",
     alignItems: 'center',
+
+    paddingHorizontal: 10,
+    paddingVertical: 10,
     
   },
   searchBar:{
@@ -31,5 +43,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     textAlign: 'center',
     flex: 2,
+  },
+  buttonContainer:{
+    flex: 1
   }
 });
