@@ -71,7 +71,7 @@ export default function App() {
             <Image source={{uri: `${pokemon.sprite}` }} style={{width: "100%", height: "100%"}} />
           </View>
           <View style={styles.pokeDescription}>
-            <Text>{pokemon.dexNum <= 9 ? "00" : pokemon.dexNum >=10 && pokemon.dexNum < 100 ? "0": ""}{pokemon.dexNum}</Text>
+            <Text>#{pokemon.dexNum <= 9 ? "00" : pokemon.dexNum >=10 && pokemon.dexNum < 100 ? "0": ""}{pokemon.dexNum}</Text>
             <Text style={styles.name}>{pokemon.name}</Text>
             <Text style={styles.type}>{pokemon.type}</Text>
           </View>
@@ -113,8 +113,6 @@ const styles = StyleSheet.create({
   searchContent:{
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: "black",
-    borderWidth: 1
   },
   spriteHolder:{
     height: 200,
