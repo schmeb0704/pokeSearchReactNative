@@ -37,7 +37,12 @@ export default function App() {
   }, [searchMe])
 
   function changeSearchInput(enteredText){
-     setSearch(enteredText)
+    let firstLetter = enteredText.slice(0,1)
+    let theRest = enteredText.slice(1)
+    let lowerLetter = firstLetter.toLowerCase()
+    let newWord = lowerLetter + theRest
+
+     setSearch(newWord)
   }
 
   function newSearch(){
