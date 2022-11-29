@@ -6,7 +6,9 @@ import {
   TextInput, 
   Button, 
   Image,
-  ScrollView
+  ScrollView,
+  Pressable,
+  Keyboard
 } 
 from 'react-native';
 import React from "react"
@@ -50,43 +52,48 @@ export default function App() {
   }
 
   return (
-    <View style={styles.mainPage}>
-      <View style={styles.inputSearch}>
-        <View style={styles.searchBar}>
-          <TextInput placeholder='Search Pokemon'
-            style={{
-              padding: 5
-            }}
-            onChangeText={changeSearchInput}
-          />
+    <Pressable onPress={()=>{
+      Keyboard.dismiss()
+    }}>
+      <View style={styles.mainPage}>
+        <View style={styles.inputSearch}>
+          <View style={styles.searchBar}>
+            <TextInput placeholder='Search Pokemon'
+              style={{
+                padding: 5
+              }}
+              onChangeText={changeSearchInput}
+              autoCorrect={false}
+              blurOnSubmit
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button title='Search' color={"red"} onPress={newSearch}/>
+          </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <Button title='Search' color={"red"} onPress={newSearch}/>
-        </View>
+        <StatusBar style="auto" />
+        <ScrollView >
+          <View style={styles.searchContent}>
+            <View style={styles.spriteHolder}>
+              <Image source={{uri: `${pokemon.sprite}` }} style={{width: "100%", height: "100%"}} />
+            </View>
+            <View style={styles.pokeDescription}>
+              <Text>#{pokemon.dexNum <= 9 ? "00" : pokemon.dexNum >=10 && pokemon.dexNum < 100 ? "0": ""}{pokemon.dexNum}</Text>
+              <Text style={styles.name}>{pokemon.name}</Text>
+              <Text style={styles.type}>{pokemon.type}</Text>
+            </View>
+          </View>
+        </ScrollView>
       </View>
-      <StatusBar style="auto" />
-      <ScrollView >
-        <View style={styles.searchContent}>
-          <View style={styles.spriteHolder}>
-            <Image source={{uri: `${pokemon.sprite}` }} style={{width: "100%", height: "100%"}} />
-          </View>
-          <View style={styles.pokeDescription}>
-            <Text>#{pokemon.dexNum <= 9 ? "00" : pokemon.dexNum >=10 && pokemon.dexNum < 100 ? "0": ""}{pokemon.dexNum}</Text>
-            <Text style={styles.name}>{pokemon.name}</Text>
-            <Text style={styles.type}>{pokemon.type}</Text>
-          </View>
-        </View>
-      </ScrollView>
-    </View>
+    </Pressable>
   );
 }
 
 
-
-
 const styles = StyleSheet.create({
   mainPage:{
-    paddingTop: 30
+    paddingTop: 30,
+    height: "100%"
     
   },
   inputSearch:{
