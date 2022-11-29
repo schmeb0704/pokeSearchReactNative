@@ -1,5 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput, 
+  Button, 
+  Image,
+  ScrollView
+} 
+from 'react-native';
 import React from "react"
 
 export default function App() {
@@ -30,6 +39,7 @@ export default function App() {
   }, [searchMe])
 
 
+
   return (
     <View style={styles.mainPage}>
       <View style={styles.inputSearch}>
@@ -45,17 +55,24 @@ export default function App() {
         </View>
       </View>
       <StatusBar style="auto" />
-      <View>
-        <Image source={{uri: `${pokemon.sprite}` }} style={{width: 100, height: 100}} />
-      </View>
-      <View>
-        <Text>{pokemon.name}</Text>
-        <Text>{pokemon.type}</Text>
-        <Text>{pokemon.dexNum}</Text>
-      </View>
+      <ScrollView >
+        <View style={styles.searchContent}>
+          <View style={styles.spriteHolder}>
+            <Image source={{uri: `${pokemon.sprite}` }} style={{width: "100%", height: "100%"}} />
+          </View>
+          <View>
+            <Text>{pokemon.dexNum}</Text>
+            <Text style={styles.name}>{pokemon.name}</Text>
+            <Text style={styles.type}>{pokemon.type}</Text>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 }
+
+
+
 
 const styles = StyleSheet.create({
   mainPage:{
@@ -82,5 +99,25 @@ const styles = StyleSheet.create({
   },
   buttonContainer:{
     flex: 1
+  },
+  searchContent:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: "black",
+    borderWidth: 1
+  },
+  spriteHolder:{
+    height: 200,
+    width: 200,
+    marginTop: 15,
+    backgroundColor: "#616161",
+    borderRadius: 8
+  },
+  name:{
+    textTransform: "capitalize",
+    fontWeight: "600"
+  }, 
+  type:{
+    textTransform: "capitalize"
   }
 });
