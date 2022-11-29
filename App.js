@@ -64,7 +64,6 @@ export default function App() {
               }}
               onChangeText={changeSearchInput}
               autoCorrect={false}
-              blurOnSubmit
             />
           </View>
           <View style={styles.buttonContainer}>
