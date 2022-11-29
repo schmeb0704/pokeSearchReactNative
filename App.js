@@ -18,10 +18,8 @@ export default function App() {
     dexNum: "",
     sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
   })
-  const [searchMe, setSearchMe] = React.useState("pikachu")
-  const [toSearch, setSearch] = React.useState({
-    searchName: ""
-  })
+  const [searchMe, setSearchMe] = React.useState("bulbasaur")
+  const [toSearch, setSearch] = React.useState("")
 
   React.useEffect(()=>{
     fetch(`https://pokeapi.co/api/v2/pokemon/${searchMe}`)
@@ -38,7 +36,13 @@ export default function App() {
       )
   }, [searchMe])
 
+  function changeSearchInput(enteredText){
+     setSearch(enteredText)
+  }
 
+  function newSearch(){
+    setSearchMe(toSearch)
+  }
 
   return (
     <View style={styles.mainPage}>
@@ -48,10 +52,11 @@ export default function App() {
             style={{
               padding: 5
             }}
+            onChangeText={changeSearchInput}
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button title='Search' color={"red"}/>
+          <Button title='Search' color={"red"} onPress={newSearch}/>
         </View>
       </View>
       <StatusBar style="auto" />
@@ -60,8 +65,8 @@ export default function App() {
           <View style={styles.spriteHolder}>
             <Image source={{uri: `${pokemon.sprite}` }} style={{width: "100%", height: "100%"}} />
           </View>
-          <View>
-            <Text>{pokemon.dexNum}</Text>
+          <View style={styles.pokeDescription}>
+            <Text>{pokemon.dexNum <= 9 ? "00" : pokemon.dexNum >=10 && pokemon.dexNum < 100 ? "0": ""}{pokemon.dexNum}</Text>
             <Text style={styles.name}>{pokemon.name}</Text>
             <Text style={styles.type}>{pokemon.type}</Text>
           </View>
@@ -119,5 +124,13 @@ const styles = StyleSheet.create({
   }, 
   type:{
     textTransform: "capitalize"
+  },
+  pokeDescription:{
+    alignItems: 'flex-start',
+    justifyContent: "flex-start",
+
+    width: 200,
+    height: 70,
+    padding: 5,
   }
 });
